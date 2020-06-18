@@ -23,10 +23,30 @@ public class BeverageRunner1 implements CommandLineRunner {
         loadSomeData();
         loadAllData();
         loadDataByPage();
+        loadDataByLike();
+        loadDataByContaining();
         deleteAndCheckCount();
 
     }
 
+    private void loadDataByContaining(){
+        LOGGER.info("find detail with milk");
+        repository.findByDetailContaining("milk").forEach(b -> LOGGER.info("with milk:{}",b));
+        LOGGER.info("find detail with hot");
+        repository.findByDetailContaining("hot").forEach(b -> LOGGER.info("with hot:{}",b));
+
+    }
+
+    private void loadDataByLike(){
+        LOGGER.info("find hot");
+        repository.findByTitleLike("hot%")
+                .forEach(beverage -> LOGGER.info("hot prefix:{}",beverage));
+        LOGGER.info("find cold");
+        repository.findByTitleLike("cold%")
+                .forEach(beverage -> LOGGER.info("hot prefix:{}",beverage));
+
+
+    }
     private void loadDataByPage(){
         LOGGER.info("load data by page");
         PageRequest pr1 =  PageRequest.of(0,4);

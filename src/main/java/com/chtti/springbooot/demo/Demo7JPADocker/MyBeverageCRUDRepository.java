@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface MyBeverageCRUDRepository
         extends CrudRepository<Beverage,Long> {
-    public List<Beverage> findMatchByTitle(String title);
+    List<Beverage> findMatchByTitle(String title);
+    List<Beverage> findByTitleLike(String title);
     Page<Beverage> findAll(Pageable pageable);
+    List<Beverage> findByDetailContaining(String detail);
 }
