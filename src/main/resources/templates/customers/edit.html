@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <title>Edit Customer</title>
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout">
+<h2>
+    Edit Customer
+</h2>
+<p th:text="${customer}">test customer</p>
+<p th:text="${customer.firstName}">test firstName</p>
+<p th:text="${customer.lastName}">test lastName</p>
+<p th:text="${customer.id}">test id</p>
+
+<form th:action="@{/customers/modify}" th:object="${customerForm}" method="post">
+    <input type="hidden" name="id" th:value="${customer.id}"/>
+    <dl>
+        <dt><label for="lastName">lastName</label></dt>
+        <dd></dd>
+        <input type="text" id="lastName" name="lastName" th:field="*{lastName}"
+               value="default last name" th:errorclass="error-input"/>
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+              class="error-messages">Error!</span>
+        <dt><label for="firstName">lastName</label></dt>
+        <input type="text" id="firstName" name="firstName" th:field="*{firstName}"
+               value="default first name" th:errorclass="error-input"/>
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+              class="error-messages">Error!</span>
+
+        <dd></dd>
+    </dl>
+    <input type="submit" value="Modify" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>
+</form>
+</div>
+</body>
+</html>

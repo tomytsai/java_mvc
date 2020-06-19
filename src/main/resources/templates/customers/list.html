@@ -25,7 +25,7 @@
 
             <dd></dd>
         </dl>
-        <input type="submit" value="add"/>
+        <input type="submit" value="add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>
     </form>
 
 <H1>List all customers</H1>
@@ -35,6 +35,7 @@
         <th class="mdl-data-table__cell--non-numeric">lastName</th>
         <th class="mdl-data-table__cell--non-numeric">firstName</th>
         <th class="mdl-data-table__cell--non-numeric">Delete</th>
+        <th class="mdl-data-table__cell--non-numeric">Modify</th>
     </tr>
     <tr th:each="c:${customers}">
         <td class="mdl-data-table__cell--non-numeric" th:text="${c.id}">default ID</td>
@@ -46,6 +47,13 @@
                 <input type="hidden", name="id" th:value="${c.id}">
             </form>
         </td>
+        <td class="mdl-data-table__cell--non-numeric">
+            <form th:action="@{/customers/edit}" method="get">
+                <input type="submit" value="edit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                <input type="hidden", name="id" th:value="${c.id}">
+            </form>
+        </td>
+
     </tr>
 </table>
 </div>
