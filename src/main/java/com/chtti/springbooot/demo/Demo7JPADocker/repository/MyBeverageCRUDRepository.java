@@ -1,4 +1,4 @@
-package com.chtti.springbooot.demo.Demo7JPADocker;
+package com.chtti.springbooot.demo.Demo7JPADocker.repository;
 
 import com.chtti.springbooot.demo.Demo7JPADocker.beans.Beverage;
 import org.springframework.data.domain.Page;

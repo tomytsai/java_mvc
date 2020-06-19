@@ -1,17 +1,18 @@
-package com.chtti.springbooot.demo.Demo7JPADocker;
+package com.chtti.springbooot.demo.Demo7JPADocker.runner;
 
 import com.chtti.springbooot.demo.Demo7JPADocker.beans.Beverage;
+import com.chtti.springbooot.demo.Demo7JPADocker.repository.MyBeverageCRUDRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Page;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(1)
 public class BeverageRunner1 implements CommandLineRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(BeverageRunner1.class.getSimpleName());
     @Autowired
