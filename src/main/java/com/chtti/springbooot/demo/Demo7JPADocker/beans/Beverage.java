@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Data
 public class Beverage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String detail;
