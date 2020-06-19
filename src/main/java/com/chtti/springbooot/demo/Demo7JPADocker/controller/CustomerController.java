@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CustomerController {
@@ -25,6 +26,9 @@ public class CustomerController {
 
     @RequestMapping(value="/customers/create", method = RequestMethod.POST)
     String create(@Validated CustomerForm form, BindingResult result,Model model){
+        if(result.hasErrors()) {
+            return listAll(model);
+        }
         Customer customer = new Customer();
         BeanUtils.copyProperties(form,customer);
         service.saveCustomer(customer);
@@ -33,8 +37,15 @@ public class CustomerController {
 
     @RequestMapping(value= "customers",
             method= RequestMethod.GET)
-    String listAllP(Model model){
+    String listAll(Model model){
         model.addAttribute("customers",service.retrieveCustomers());
         return "customers/list";
+    }
+
+    @RequestMapping(value="/customers/delete",method=RequestMethod.POST)
+    String delete(@RequestParam Integer id){
+        service.deleteCustomer(id);
+        return "redirect:/customers";
+
     }
 }

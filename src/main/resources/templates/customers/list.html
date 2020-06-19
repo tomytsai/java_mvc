@@ -14,10 +14,15 @@
             <dt><label for="lastName">lastName</label></dt>
             <dd></dd>
                 <input type="text" id="lastName" name="lastName" th:field="*{lastName}"
-                       value="default last name"/>
+                       value="default last name" th:errorclass="error-input"/>
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                    class="error-messages">Error!</span>
             <dt><label for="firstName">lastName</label></dt>
             <input type="text" id="firstName" name="firstName" th:field="*{firstName}"
-                   value="default first name"/>
+                   value="default first name" th:errorclass="error-input"/>
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                  class="error-messages">Error!</span>
+
             <dd></dd>
         </dl>
         <input type="submit" value="add"/>
@@ -29,11 +34,18 @@
         <th class="mdl-data-table__cell--non-numeric">ID</th>
         <th class="mdl-data-table__cell--non-numeric">lastName</th>
         <th class="mdl-data-table__cell--non-numeric">firstName</th>
+        <th class="mdl-data-table__cell--non-numeric">Delete</th>
     </tr>
     <tr th:each="c:${customers}">
         <td class="mdl-data-table__cell--non-numeric" th:text="${c.id}">default ID</td>
         <td class="mdl-data-table__cell--non-numeric" th:text="${c.lastName}">default lastName</td>
         <td class="mdl-data-table__cell--non-numeric" th:text="${c.firstName}">default firstName</td>
+        <td class="mdl-data-table__cell--non-numeric">
+            <form th:action="@{/customers/delete}" method="post">
+                <input type="submit" value="delete" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                <input type="hidden", name="id" th:value="${c.id}">
+            </form>
+        </td>
     </tr>
 </table>
 </div>
