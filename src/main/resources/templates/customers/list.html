@@ -8,6 +8,21 @@
     <title>List All Customers</title>
 </head>
 <body>
+<div class="mdl-layout mdl-js-layout">
+    <form th:action="@{/customers/create}" th:object="${customerForm}" method="post">
+        <dl>
+            <dt><label for="lastName">lastName</label></dt>
+            <dd></dd>
+                <input type="text" id="lastName" name="lastName" th:field="*{lastName}"
+                       value="default last name"/>
+            <dt><label for="firstName">lastName</label></dt>
+            <input type="text" id="firstName" name="firstName" th:field="*{firstName}"
+                   value="default first name"/>
+            <dd></dd>
+        </dl>
+        <input type="submit" value="add"/>
+    </form>
+
 <H1>List all customers</H1>
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--6dp">
     <tr>
@@ -21,5 +36,6 @@
         <td class="mdl-data-table__cell--non-numeric" th:text="${c.firstName}">default firstName</td>
     </tr>
 </table>
+</div>
 </body>
 </html>
