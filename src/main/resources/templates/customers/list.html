@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <title>List All Customers</title>
+</head>
+<body>
+<H1>List all customers</H1>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--6dp">
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">ID</th>
+        <th class="mdl-data-table__cell--non-numeric">lastName</th>
+        <th class="mdl-data-table__cell--non-numeric">firstName</th>
+    </tr>
+    <tr th:each="c:${customers}">
+        <td class="mdl-data-table__cell--non-numeric" th:text="${c.id}">default ID</td>
+        <td class="mdl-data-table__cell--non-numeric" th:text="${c.lastName}">default lastName</td>
+        <td class="mdl-data-table__cell--non-numeric" th:text="${c.firstName}">default firstName</td>
+    </tr>
+</table>
+</body>
+</html>
